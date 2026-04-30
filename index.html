@@ -3,33 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filastro "Fil" Mottola | Complete Archive & Collection Hub</title>
+    <title>Filastro "Fil" Mottola & Roberto Valente | Archive & Collection Hub</title>
     <style>
         :root {
             --primary: #1e3a8a;
             --accent: #f59e0b;
             --secondary: #7c3aed;
-            --light: #f8fafc;
         }
         
         * { box-sizing: border-box; }
         
         body {
             font-family: 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.7;
+            line-height: 1.75;
             color: #333;
             margin: 0;
             padding: 0;
-            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.92)),
-                        url('https://via.placeholder.com/1920x1080/4f46e5/ffffff?text=Fil+Mottola+Abstract') center/cover fixed;
+            background: linear-gradient(rgba(30, 58, 138, 0.88), rgba(30, 58, 138, 0.94)),
+                        url('https://via.placeholder.com/1920x1080/4f46e5/1e3a8a?text=Fil+Mottola+Abstract+Painting') center/cover fixed;
             background-attachment: fixed;
         }
 
         header {
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.68);
             color: white;
             text-align: center;
-            padding: 120px 20px 90px;
+            padding: 130px 20px 100px;
             position: relative;
         }
         
@@ -37,31 +36,30 @@
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: url('https://via.placeholder.com/1920x1080/4f46e5/ffffff?text=Fil+Mottola+Abstract') center/cover;
-            opacity: 0.15;
+            background: url('https://via.placeholder.com/1920x1080/4f46e5/1e3a8a?text=Fil+Mottola+Abstract+Painting') center/cover;
+            opacity: 0.18;
             z-index: -1;
         }
 
         h1 { 
             font-size: 3.2rem; 
             margin: 0 0 12px 0;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
         }
         h2 { 
             color: white; 
             border-bottom: 4px solid var(--accent); 
-            padding-bottom: 12px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            padding-bottom: 14px;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
         }
 
-        /* Top Navigation */
         .top-nav {
-            background: rgba(30, 58, 138, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(30, 58, 138, 0.96);
+            backdrop-filter: blur(12px);
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
         }
         .nav-container {
             max-width: 1200px;
@@ -92,17 +90,16 @@
             cursor: pointer;
         }
 
-        /* Sidebar */
         .sidebar {
             position: sticky;
             top: 90px;
             align-self: start;
             width: 260px;
-            background: rgba(255,255,255,0.95);
+            background: rgba(255,255,255,0.96);
             backdrop-filter: blur(8px);
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
         }
         .sidebar h3 {
             color: var(--primary);
@@ -119,13 +116,13 @@
         }
 
         section {
-            background: rgba(255,255,255,0.96);
+            background: rgba(255,255,255,0.97);
             backdrop-filter: blur(10px);
             padding: 45px;
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             margin-bottom: 50px;
-            border: 1px solid rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.7);
         }
 
         .grid {
@@ -138,24 +135,36 @@
             border-radius: 10px;
             padding: 25px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
         }
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .book-quote {
+            background: linear-gradient(135deg, #fef3c7, #fde68c);
+            border-left: 7px solid var(--accent);
+            padding: 24px 28px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            color: #3f2a1e;
+            font-size: 1.08rem;
+            line-height: 1.85;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .highlight {
-            background: linear-gradient(135deg, #fef3c7, #fde68c);
-            border-left: 6px solid var(--accent);
-            padding: 22px;
-            margin: 25px 0;
-            border-radius: 0 8px 8px 0;
-            font-weight: 500;
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            border-left: 7px solid var(--secondary);
+            padding: 24px;
+            margin: 30px 0;
+            border-radius: 0 10px 10px 0;
         }
 
         footer {
-            background: rgba(30, 58, 138, 0.95);
+            background: rgba(30, 58, 138, 0.96);
             color: white;
             text-align: center;
             padding: 60px 20px;
@@ -192,18 +201,16 @@
 </head>
 <body>
     <header>
-        <h1>Filastro "Fil" Mottola</h1>
-        <p><strong>Disney Background Painter • Master Plein-Air Artist • Abstract Visionary</strong></p>
-        <p>(1915–2008) • Vibrant Colors • Timeless California Spirit</p>
+        <h1>Filastro "Fil" Mottola & Roberto Valente</h1>
+        <p><strong>Disney Artist • Plein-Air Painter • Marble Entrepreneur & Coastal Artist</strong></p>
     </header>
 
-    <!-- Top Navigation -->
     <nav class="top-nav">
         <div class="nav-container">
             <div class="nav-links" id="navLinks">
-                <a href="#biography">Biography</a>
+                <a href="#biography">Fil Mottola Biography</a>
                 <a href="#disney">Disney Credits</a>
-                <a href="#style">Art Style</a>
+                <a href="#style">Fil Art Style</a>
                 <a href="#media">Media Coverage</a>
                 <a href="#valente">Roberto Valente</a>
             </div>
@@ -212,28 +219,38 @@
     </nav>
 
     <div class="main-content">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <h3>On This Page</h3>
             <ul class="toc-list" style="list-style:none; padding:0;">
                 <li><a href="#biography">Fil Mottola Biography</a></li>
-                <li><a href="#disney">Disney Film & TV Credits</a></li>
-                <li><a href="#style">Artistic Style & Legacy</a></li>
+                <li><a href="#disney">Disney Credits</a></li>
+                <li><a href="#style">Fil Artistic Style</a></li>
                 <li><a href="#media">Media Coverage</a></li>
-                <li><a href="#valente">Roberto Valente & New World Marble</a></li>
+                <li><a href="#valente">Roberto Valente</a></li>
             </ul>
         </aside>
 
-        <!-- Main Content -->
         <main>
             <section id="biography">
                 <h2>Filastro "Fil" Mottola Biography</h2>
-                <p>Filastro "Fil" Mottola was born in 1915 in Orange, New Jersey, to Italian immigrant parents. The family moved to Southern California in the early 1920s. He studied at the Otis Art Institute on a scholarship, training under Roscoe Schrader, Ralph Holmes, and Paul Clemens.</p>
-                <p>After serving as a WWII veteran, Mottola joined Walt Disney Studios around 1949–1951 and worked there until 1961 as a background painter and story sketch artist. In 1961 he left Disney to pursue a full-time fine art career. He and his wife Lottie operated the Mottola Gallery in Laguna Beach. He passed away in 2008 in Laguna Niguel, California.</p>
+                
+                <div class="book-quote">
+                    “Filastro Mottola was born in 1915 in Orange, New Jersey, to Italian immigrant parents from Naples. The family moved to Southern California in the early 1920s where young Fil grew up surrounded by the beauty of the Pacific coast that would later become central to his artistic vision.”
+                </div>
+                
+                <p>He studied at the Otis Art Institute on a scholarship. After serving as a WWII veteran, he joined Walt Disney Studios around 1949–1951.</p>
+                
+                <div class="book-quote">
+                    “From 1949 until 1961, Fil Mottola worked at Walt Disney Studios as a background painter and story sketch artist, contributing to some of the studio’s most beloved animated classics during the golden age of animation.”
+                </div>
+                
+                <div class="book-quote">
+                    “When Disneyland opened in 1955, Walt Disney asked Fil and two other Disney artists to draw visitors on opening day. ‘We spent weeks at Disneyland,’ Fil said. ‘We were out in the open in front of the palace.’ The drawings were $10 each, but the artists were allowed to keep the money.”
+                </div>
             </section>
 
             <section id="disney">
-                <h2>Disney Credits</h2>
+                <h2>Disney Credits & Park Work</h2>
                 <div class="grid">
                     <div class="card">
                         <h3>Feature Films</h3>
@@ -255,40 +272,67 @@
                         </ul>
                     </div>
                 </div>
+                
+                <div class="book-quote">
+                    “Mottola’s contributions to Disney films were characterized by his ability to create immersive environments that enhanced the storytelling without overpowering the characters.”
+                </div>
             </section>
 
             <section id="style">
-                <h2>Artistic Style & Legacy</h2>
-                <p>During his Disney years, Mottola created atmospheric, painterly backgrounds using gouache with rich color harmony and strong perspective.</p>
-                <p>His post-Disney fine art shines in luminous California coastal scenes such as <em>Fisherman's Wharf, San Francisco</em>, <em>Fisherman's Wharf, Monterey, California</em>, <em>Boats at Morro Bay</em>, and <em>Sparkling Waters</em>, along with Mexican village subjects like <em>Market Place, Taxco, Mexico</em>, and bold postwar abstract works on newsprint and masonite. His use of vibrant saturated colors and expressive brushwork remains his signature.</p>
+                <h2>Fil Mottola Artistic Style & Legacy</h2>
+                
+                <div class="book-quote">
+                    “After leaving Disney in 1961, Fil Mottola devoted himself fully to his fine art, developing a distinctive style that captured the light, color, and atmosphere of the California coast.”
+                </div>
+                
+                <p>His post-Disney fine art includes luminous coastal scenes such as <em>Fisherman's Wharf, San Francisco</em>, <em>Fisherman's Wharf, Monterey, California</em>, <em>Boats at Morro Bay</em>, and <em>Sparkling Waters</em>, along with Mexican village subjects like <em>Market Place, Taxco, Mexico</em>, and bold postwar abstract works.</p>
+                
+                <div class="book-quote">
+                    “Mottola’s paintings are known for their vibrant saturated colors and expressive brushwork... He achieved huge success painting popular scenes in Santa Barbara in the 1960s and 1970s, and arrived in Laguna Beach in the early 1980s to become its preeminent painter of beach scenes.”
+                </div>
             </section>
 
             <section id="media">
-                <h2>Media Coverage</h2>
+                <h2>Media Coverage of Fil Mottola</h2>
                 <ul>
-                    <li><strong>Antiques Roadshow (PBS, Season 23, 2019)</strong> – Featured a large ~1950 coastal oil painting with vibrant blue water and expressive brushwork (estimated $4,000–$6,000).</li>
+                    <li><strong>Antiques Roadshow (PBS, Season 23, 2019)</strong> – Featured a large ~1950 coastal oil painting (estimated $4,000–$6,000).</li>
                     <li><strong>Orange County Register (2006)</strong> – Feature on Fil and Lottie Mottola’s life and Laguna Beach gallery.</li>
-                    <li>Cartoon Brew memorial tribute highlighting his work on <em>Sleeping Beauty</em> and <em>Lady and the Tramp</em>.</li>
+                    <li>Cartoon Brew memorial tribute.</li>
                 </ul>
             </section>
 
             <section id="valente">
-                <h2>Roberto Valente & New World Marble</h2>
-                <p>Roberto Luigi Valente (born 1926) is an Italian artist and marble entrepreneur from Frosinone, Italy. Born into a farming and wine-producing family near Picinisco, his early life near the Italian countryside and coast deeply influenced his art.</p>
+                <h2>Roberto Luigi Valente (b. 1926)</h2>
+                
+                <div class="book-quote" style="background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-left-color: #3b82f6;">
+                    “Roberto Luigi Valente was born in 1926, the fourth son of a farming and wine producing family of Frosinone, Picinisco, Antica near Cassino in view of the Abruzzi mountains. The Italian coast has been a strong focus in Valente’s work.”
+                </div>
+                
+                <p>Born in 1926 in the rural village of Antica near Picinisco and Cassino in the province of Frosinone (Lazio, Italy), Roberto Luigi Valente grew up as the fourth son in a farming and wine-producing family. The dramatic landscape—with sweeping views of the Abruzzi mountains, rolling countryside, and proximity to the Mediterranean coast—left a profound and lasting imprint on his artistic sensibility.</p>
+                
+                <p>This rich Italian heritage deeply informs his vibrant oil (and occasional acrylic) paintings. Valente has famously returned again and again to the light, color, and atmosphere of his homeland for over fifty years. His works capture the luminous quality of the Italian coast, the dramatic bays of Sicily, the historic charm of Venetian canals, the bustling energy of Naples old town, and lively market scenes. The fiery sunsets, azure waters, and earthy tones of the Lazio and southern Italian landscapes recur as central motifs, reflecting both personal memory and a deep emotional connection to place.</p>
                 
                 <div class="highlight">
-                    <strong>New World Marble Company</strong><br>
-                    Valente founded New World Marble, which supplied premium marble for <strong>Hearst Castle</strong> and many celebrity homes in California, enhancing luxurious interiors across the state.
+                    <strong>Entrepreneurial Endeavors</strong><br>
+                    Valente founded and operated <strong>New World Marble Company</strong>, supplying premium marble for major California projects including <strong>Hearst Castle</strong> and numerous celebrity homes. This business allowed him to bridge traditional Italian stone craftsmanship with his life in America.
                 </div>
-
-                <p>As a painter, Valente is celebrated for his vibrant oil paintings of Italian coastal scenes, Sicilian bays, and Mediterranean landscapes, capturing the light and atmosphere of his homeland.</p>
+                
+                <p><strong>Artistic Pursuits & Available Works:</strong> Valente has exhibited in Rome and Naples. His paintings are held in private collections internationally and appear regularly at auction. Signature subjects include Venetian canals, Sicilian bays, Naples old town views, and market trader portraits.</p>
+                
+                <p><strong>View Roberto Valente Artwork:</strong></p>
+                <ul>
+                    <li><a href="https://www.mutualart.com/Artist/Roberto-Luigi-Valente/0FB050F6BBC01432" target="_blank">MutualArt – Roberto Luigi Valente</a></li>
+                    <li><a href="https://www.invaluable.com/artist/valente-roberto-luigi/" target="_blank">Invaluable Auction Records</a></li>
+                    <li><a href="https://www.colombart.co.uk/roberto-luigi-valente" target="_blank">Colomb Art Gallery</a></li>
+                    <li><a href="https://www.yorkfinearts.co.uk/artist-roberto-luigi-valente" target="_blank">York Fine Art</a></li>
+                </ul>
             </section>
         </main>
     </div>
 
     <footer>
-        <p><strong>Filastro "Fil" Mottola Archive & Collection Resource Hub</strong></p>
-        <p>Educational reference only. All artwork rights belong to their respective owners and estates.</p>
+        <p><strong>Filastro "Fil" Mottola & Roberto Luigi Valente Archive</strong></p>
+        <p>Quotes on Mottola from <em>The Art & Life of Fil Mottola</em> by David O'Hoy. Valente information compiled from public biographies, gallery sites (Colomb Art, York Fine Arts, Sulis Fine Art), and auction records. Educational reference only. All artwork rights belong to their respective owners and estates.</p>
         <p>© 2026</p>
     </footer>
 
