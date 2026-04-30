@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filastro "Fil" Mottola | Complete Archive & Collection Hub</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --accent: #f59e0b;
+            --secondary: #7c3aed;
+            --light: #f8fafc;
+        }
+        
+        * { box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.92)),
+                        url('https://via.placeholder.com/1920x1080/4f46e5/ffffff?text=Fil+Mottola+Abstract') center/cover fixed;
+            background-attachment: fixed;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.65);
+            color: white;
+            text-align: center;
+            padding: 120px 20px 90px;
+            position: relative;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://via.placeholder.com/1920x1080/4f46e5/ffffff?text=Fil+Mottola+Abstract') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        h1 { 
+            font-size: 3.2rem; 
+            margin: 0 0 12px 0;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }
+        h2 { 
+            color: white; 
+            border-bottom: 4px solid var(--accent); 
+            padding-bottom: 12px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background: rgba(30, 58, 138, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 18px 0;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover { 
+            color: var(--accent); 
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.9rem;
+            cursor: pointer;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 90px;
+            align-self: start;
+            width: 260px;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .sidebar h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+        }
+
+        section {
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(10px);
+            padding: 45px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            margin-bottom: 50px;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: rgba(255,255,255,0.98);
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #fef3c7, #fde68c);
+            border-left: 6px solid var(--accent);
+            padding: 22px;
+            margin: 25px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+
+        footer {
+            background: rgba(30, 58, 138, 0.95);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 80px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+                width: 100%;
+            }
+            .hamburger {
+                display: block;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(30, 58, 138, 0.98);
+                padding: 20px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Filastro "Fil" Mottola</h1>
+        <p><strong>Disney Background Painter • Master Plein-Air Artist • Abstract Visionary</strong></p>
+        <p>(1915–2008) • Vibrant Colors • Timeless California Spirit</p>
+    </header>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="nav-links" id="navLinks">
+                <a href="#biography">Biography</a>
+                <a href="#disney">Disney Credits</a>
+                <a href="#style">Art Style</a>
+                <a href="#media">Media Coverage</a>
+                <a href="#valente">Roberto Valente</a>
+            </div>
+            <button class="hamburger" id="hamburger">☰</button>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h3>On This Page</h3>
+            <ul class="toc-list" style="list-style:none; padding:0;">
+                <li><a href="#biography">Fil Mottola Biography</a></li>
+                <li><a href="#disney">Disney Film & TV Credits</a></li>
+                <li><a href="#style">Artistic Style & Legacy</a></li>
+                <li><a href="#media">Media Coverage</a></li>
+                <li><a href="#valente">Roberto Valente & New World Marble</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <section id="biography">
+                <h2>Filastro "Fil" Mottola Biography</h2>
+                <p>Filastro "Fil" Mottola was born in 1915 in Orange, New Jersey, to Italian immigrant parents. The family moved to Southern California in the early 1920s. He studied at the Otis Art Institute on a scholarship, training under Roscoe Schrader, Ralph Holmes, and Paul Clemens.</p>
+                <p>After serving as a WWII veteran, Mottola joined Walt Disney Studios around 1949–1951 and worked there until 1961 as a background painter and story sketch artist. In 1961 he left Disney to pursue a full-time fine art career. He and his wife Lottie operated the Mottola Gallery in Laguna Beach. He passed away in 2008 in Laguna Niguel, California.</p>
+            </section>
+
+            <section id="disney">
+                <h2>Disney Credits</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>Feature Films</h3>
+                        <ul>
+                            <li><strong>Alice in Wonderland</strong> (1951) – Backgrounds</li>
+                            <li><strong>Peter Pan</strong> (1953) – Backgrounds & Story Sketches</li>
+                            <li><strong>Lady and the Tramp</strong> (1955) – Backgrounds</li>
+                            <li><strong>Sleeping Beauty</strong> (1959) – Background Painter</li>
+                            <li><strong>One Hundred and One Dalmatians</strong> (1961) – Backgrounds</li>
+                            <li><strong>The Sword in the Stone</strong> (1963) – Backgrounds</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Television</h3>
+                        <ul>
+                            <li><strong>The Magical World of Disney</strong> – Backgrounds</li>
+                            <li><strong>The Plausible Impossible</strong> (1956)</li>
+                            <li><strong>Toot, Whistle, Plunk and Boom</strong> (1959)</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="style">
+                <h2>Artistic Style & Legacy</h2>
+                <p>During his Disney years, Mottola created atmospheric, painterly backgrounds using gouache with rich color harmony and strong perspective.</p>
+                <p>His post-Disney fine art shines in luminous California coastal scenes such as <em>Fisherman's Wharf, San Francisco</em>, <em>Fisherman's Wharf, Monterey, California</em>, <em>Boats at Morro Bay</em>, and <em>Sparkling Waters</em>, along with Mexican village subjects like <em>Market Place, Taxco, Mexico</em>, and bold postwar abstract works on newsprint and masonite. His use of vibrant saturated colors and expressive brushwork remains his signature.</p>
+            </section>
+
+            <section id="media">
+                <h2>Media Coverage</h2>
+                <ul>
+                    <li><strong>Antiques Roadshow (PBS, Season 23, 2019)</strong> – Featured a large ~1950 coastal oil painting with vibrant blue water and expressive brushwork (estimated $4,000–$6,000).</li>
+                    <li><strong>Orange County Register (2006)</strong> – Feature on Fil and Lottie Mottola’s life and Laguna Beach gallery.</li>
+                    <li>Cartoon Brew memorial tribute highlighting his work on <em>Sleeping Beauty</em> and <em>Lady and the Tramp</em>.</li>
+                </ul>
+            </section>
+
+            <section id="valente">
+                <h2>Roberto Valente & New World Marble</h2>
+                <p>Roberto Luigi Valente (born 1926) is an Italian artist and marble entrepreneur from Frosinone, Italy. Born into a farming and wine-producing family near Picinisco, his early life near the Italian countryside and coast deeply influenced his art.</p>
+                
+                <div class="highlight">
+                    <strong>New World Marble Company</strong><br>
+                    Valente founded New World Marble, which supplied premium marble for <strong>Hearst Castle</strong> and many celebrity homes in California, enhancing luxurious interiors across the state.
+                </div>
+
+                <p>As a painter, Valente is celebrated for his vibrant oil paintings of Italian coastal scenes, Sicilian bays, and Mediterranean landscapes, capturing the light and atmosphere of his homeland.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p><strong>Filastro "Fil" Mottola Archive & Collection Resource Hub</strong></p>
+        <p>Educational reference only. All artwork rights belong to their respective owners and estates.</p>
+        <p>© 2026</p>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const headerOffset = 90;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
