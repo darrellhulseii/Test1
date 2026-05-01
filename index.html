@@ -1,371 +1,1104 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filastro "Fil" Mottola & Roberto Valente | Archive & Collection Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #1e3a8a;
-            --accent: #f59e0b;
-            --secondary: #7c3aed;
+            --ink:         #111008;
+            --cream:       #f4efe5;
+            --warm-white:  #faf8f3;
+            --gold:        #b8913a;
+            --gold-lt:     #d4ad5c;
+            --gold-pale:   #f5e9cc;
+            --navy:        #1b2c4e;
+            --navy-deep:   #111e35;
+            --navy-mid:    #243558;
+            --muted-dark:  #5a5040;
+            --muted-light: #c8bfaa;
+            --rule-light:  rgba(184,145,58,.25);
+            --rule-dark:   rgba(255,255,255,.12);
         }
-        
-        * { box-sizing: border-box; }
-        
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            line-height: 1.75;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(rgba(30, 58, 138, 0.88), rgba(30, 58, 138, 0.94)),
-                        url('https://via.placeholder.com/1920x1080/4f46e5/1e3a8a?text=Fil+Mottola+Abstract+Painting') center/cover fixed;
-            background-attachment: fixed;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 19px; line-height: 1.85;
+            color: var(--ink); background: var(--cream);
+            overflow-x: hidden;
         }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
 
-        header {
-            background: rgba(0, 0, 0, 0.68);
-            color: white;
-            text-align: center;
-            padding: 130px 20px 100px;
-            position: relative;
-        }
-        
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('https://via.placeholder.com/1920x1080/4f46e5/1e3a8a?text=Fil+Mottola+Abstract+Painting') center/cover;
-            opacity: 0.18;
-            z-index: -1;
-        }
+```
+/* NAV */
+.nav {
+    position: sticky; top: 0; z-index: 300;
+    background: var(--navy-deep);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px; height: 58px;
+    border-bottom: 1px solid rgba(184,145,58,.3);
+}
+.nav-logo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold-lt); text-decoration: none; white-space: nowrap;
+}
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .62rem; letter-spacing: .16em; text-transform: uppercase;
+    /* FIXED: was #ccc — bumped to near-white for AA contrast on navy-deep */
+    color: #e8e8e8; text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--gold-lt); }
+.hamburger {
+    display: none; background: none; border: none;
+    /* FIXED: was #ddd — fine, kept */
+    color: #f0f0f0; font-size: 1.5rem; cursor: pointer;
+}
 
-        h1 { 
-            font-size: 3.2rem; 
-            margin: 0 0 12px 0;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.7);
-        }
-        h2 { 
-            color: white; 
-            border-bottom: 4px solid var(--accent); 
-            padding-bottom: 14px;
-            text-shadow: 0 3px 10px rgba(0,0,0,0.7);
-        }
+/* HERO */
+.hero {
+    min-height: 94vh; background: var(--navy-deep);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 80px 24px;
+    position: relative; overflow: hidden;
+}
+.hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background:
+        radial-gradient(ellipse 65% 55% at 15% 55%, rgba(184,145,58,.13) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 65% at 85% 28%, rgba(139,58,42,.10) 0%, transparent 55%),
+        radial-gradient(ellipse 75% 75% at 50% 105%, rgba(78,98,71,.08) 0%, transparent 50%);
+}
+.hero::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: .55;
+}
+.hero-eyebrow {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .62rem; letter-spacing: .28em; text-transform: uppercase;
+    color: var(--gold-lt); display: flex; align-items: center; gap: 16px;
+    margin-bottom: 26px; position: relative;
+    opacity: 0; animation: fadeUp 1s .25s forwards;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; width: 44px; height: 1px; background: var(--gold); opacity: .55;
+}
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6.5vw, 5.6rem);
+    font-weight: 400; line-height: 1.1; letter-spacing: -.01em;
+    /* FIXED: was #f0ebe0 — fine contrast on navy-deep, kept */
+    color: #f0ebe0; max-width: 860px; position: relative;
+    opacity: 0; animation: fadeUp 1.1s .5s forwards;
+}
+.hero h1 em { font-style: italic; color: var(--gold-lt); }
+.hero-rule {
+    width: 72px; height: 2px; margin: 34px auto;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0; animation: fadeUp 1s .75s forwards;
+}
+.hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 300; font-style: italic;
+    /* FIXED: was rgba(230,222,205,.72) — opacity too low; raised to .92 */
+    color: rgba(230,222,205,.92); max-width: 520px; line-height: 1.75;
+    position: relative; opacity: 0; animation: fadeUp 1s .95s forwards;
+}
+.hero-dates {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+    /* FIXED: was rgba(212,173,92,.65) — opacity too low on dark bg; raised to .9 */
+    color: rgba(212,173,92,.9); margin-top: 28px; position: relative;
+    opacity: 0; animation: fadeIn 1s 1.3s forwards;
+}
+.scroll-indicator {
+    position: absolute; bottom: 38px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+    opacity: 0; animation: fadeIn 1s 1.7s forwards;
+}
+.scroll-indicator span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .52rem; letter-spacing: .22em; text-transform: uppercase;
+    /* FIXED: was rgba(255,255,255,.3) — too faint; raised to .6 */
+    color: rgba(255,255,255,.6);
+}
+.scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2.5s 2s infinite;
+}
 
-        .top-nav {
-            background: rgba(30, 58, 138, 0.96);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            padding: 18px 0;
-            transition: all 0.3s;
-        }
-        .nav-links a:hover { 
-            color: var(--accent); 
-            transform: translateY(-2px);
-        }
+/* ARTIST STRIP */
+.artist-strip { display: grid; grid-template-columns: 1fr 1fr; }
+.strip-cell { padding: 64px 58px; position: relative; }
+.strip-cell:first-child { background: var(--warm-white); border-right: 1px solid var(--rule-light); }
+.strip-cell:last-child { background: var(--cream); }
+.strip-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .58rem; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 12px;
+}
+.strip-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--navy);
+    line-height: 1.18; margin-bottom: 8px;
+}
+.strip-dates {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .6rem; letter-spacing: .15em; text-transform: uppercase;
+    /* FIXED: was var(--muted-dark) = #5a5040 — low contrast on warm-white; darkened */
+    color: #3d3528; margin-bottom: 20px;
+}
+.strip-desc { font-size: .98rem; color: #2e2518; line-height: 1.78; }
+.strip-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .55rem; letter-spacing: .13em; text-transform: uppercase;
+    padding: 5px 12px; border: 1px solid var(--rule-light);
+    /* FIXED: was var(--muted-dark) = #5a5040 on warm-white; darkened */
+    color: #3d3528; border-radius: 2px;
+}
+/* FIXED: tag-dark on dark navy bg — was rgba(230,222,205,.8), fine; bumped slightly */
+.tag-dark { border-color: rgba(212,173,92,.35); color: #e8e2d4; }
 
-        .hamburger {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.9rem;
-            cursor: pointer;
-        }
+/* LAYOUT */
+.page-body { max-width: 1160px; margin: 0 auto; padding: 0 36px; }
 
-        .sidebar {
-            position: sticky;
-            top: 90px;
-            align-self: start;
-            width: 260px;
-            background: rgba(255,255,255,0.96);
-            backdrop-filter: blur(8px);
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
-        }
-        .sidebar h3 {
-            color: var(--primary);
-            margin-top: 0;
-        }
+/* SECTION HEADERS */
+.sec-head { padding: 88px 0 0; margin-bottom: 52px; border-top: 1px solid var(--rule-light); }
+.sec-head .eyebrow {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .58rem; letter-spacing: .26em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 14px;
+}
+.sec-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3.8vw, 3.1rem);
+    font-weight: 400; color: var(--gold-lt); line-height: 1.2;
+}
+.sec-head h2 em { font-style: italic; color: var(--gold-lt); }
 
-        .main-content {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 40px;
-        }
+/* BIOGRAPHY */
+.bio-grid { display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: start; }
+.bio-section-dark { background: var(--navy-deep); padding: 52px; margin: 0 -36px; }
+.bio-text p { margin-bottom: 1.4em; color: #f0ebe0; }
+.bio-text strong { color: #ffffff; }
 
-        section {
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(10px);
-            padding: 45px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            margin-bottom: 50px;
-            border: 1px solid rgba(255,255,255,0.7);
-        }
+/* pull quote — light surface */
+.pull-quote {
+    border-left: 3px solid var(--gold); padding: 26px 30px;
+    background: var(--gold-pale); margin: 36px 0; position: relative;
+}
+.pull-quote::before {
+    content: '\201C'; font-family: 'Playfair Display', serif;
+    font-size: 5rem; line-height: 1; color: var(--gold); opacity: .22;
+    position: absolute; top: -8px; left: 16px;
+}
+.pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-style: italic;
+    /* FIXED: was #1e1608 — fine on gold-pale, kept */
+    color: #1e1608; line-height: 1.7; position: relative;
+}
+.pull-quote cite {
+    display: block; margin-top: 14px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+    /* FIXED: was var(--muted-dark) = #5a5040 on gold-pale; darkened for AA */
+    color: #3d3528; font-style: normal;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-        .card {
-            background: rgba(255,255,255,0.98);
-            border-radius: 10px;
-            padding: 25px;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
-        }
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
+/* pull quote — dark surface */
+.pull-quote-dark {
+    border-left: 3px solid var(--gold); padding: 28px 34px;
+    background: rgba(255,255,255,.06); position: relative;
+}
+.pull-quote-dark::before {
+    content: '\201C'; font-family: 'Playfair Display', serif;
+    font-size: 5rem; line-height: 1; color: var(--gold-lt); opacity: .2;
+    position: absolute; top: -8px; left: 16px;
+}
+.pull-quote-dark p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-style: italic;
+    /* FIXED: was #f0ebe0 — fine on dark bg, kept */
+    color: #f0ebe0; line-height: 1.7; position: relative;
+}
+.pull-quote-dark cite {
+    display: block; margin-top: 14px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+    /* FIXED: was var(--muted-light) = #c8bfaa — good on dark bg, kept */
+    color: #c8bfaa; font-style: normal;
+}
 
-        .book-quote {
-            background: linear-gradient(135deg, #fef3c7, #fde68c);
-            border-left: 7px solid var(--accent);
-            padding: 24px 28px;
-            margin: 30px 0;
-            border-radius: 0 10px 10px 0;
-            font-style: italic;
-            color: #3f2a1e;
-            font-size: 1.08rem;
-            line-height: 1.85;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
+/* bio sidebar (dark navy) */
+.bio-sidebar { background: var(--navy); padding: 36px; position: sticky; top: 76px; }
+.bio-sidebar h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .58rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold-lt); margin-bottom: 22px;
+}
+.bio-sidebar dl { font-size: .92rem; }
+.bio-sidebar dt {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .55rem; letter-spacing: .14em; text-transform: uppercase;
+    /* FIXED: was color: var(--gold-lt); opacity: .65 — combined ~40% opacity on navy; raised opacity to 1 with lighter gold */
+    color: #d4ad5c; opacity: 1; margin-top: 18px; margin-bottom: 4px;
+}
+/* FIXED: was #ddd — fine on navy, kept */
+.bio-sidebar dd { color: #e8e8e8; line-height: 1.55; }
 
-        .highlight {
-            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
-            border-left: 7px solid var(--secondary);
-            padding: 24px;
-            margin: 30px 0;
-            border-radius: 0 10px 10px 0;
-        }
+/* WWII band (dark) */
+.wwii-band {
+    background: var(--navy-mid); padding: 48px 52px;
+    margin: 44px 0; border-left: 4px solid var(--gold);
+}
+.wwii-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .56rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold-lt); margin-bottom: 14px; display: block;
+}
+.wwii-band p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.18rem; font-style: italic;
+    /* FIXED: was #e8e0d0 — fine on navy-mid, kept */
+    color: #e8e0d0; line-height: 1.75;
+}
+.wwii-band cite {
+    display: block; margin-top: 16px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .56rem; letter-spacing: .14em; text-transform: uppercase;
+    /* FIXED: was var(--muted-light) = #c8bfaa on navy-mid — acceptable but bumped for safety */
+    color: #d4c9b4; font-style: normal;
+}
 
-        footer {
-            background: rgba(30, 58, 138, 0.96);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-            margin-top: 80px;
-            backdrop-filter: blur(10px);
-        }
+/* TIMELINE */
+.timeline { position: relative; padding: 8px 0 8px 36px; }
+.timeline::before {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 7px;
+    width: 2px; background: var(--rule-light);
+}
+.tl-item { position: relative; margin-bottom: 32px; }
+.tl-item::before {
+    content: ''; position: absolute; left: -33px; top: 8px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold); border: 2px solid var(--warm-white);
+}
+.tl-year {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .58rem; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px; display: block;
+}
+.tl-text { color: #f0ebe0; font-size: .97rem; line-height: 1.7; }
+.tl-section-dark { background: var(--navy-deep); padding: 52px; margin: 0 -36px; }
+.tl-heading { font-family:'Playfair Display',serif; font-weight:400; font-size:1.5rem; color:#f0ebe0; margin-bottom:30px; }
 
-        @media (max-width: 992px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            .sidebar {
-                position: static;
-                width: 100%;
-            }
-            .hamburger {
-                display: block;
-            }
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(30, 58, 138, 0.98);
-                padding: 20px;
-            }
-            .nav-links.active {
-                display: flex;
-            }
-        }
-    </style>
+/* DISNEY FILM GRID */
+.film-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1px; background: var(--rule-light);
+    border: 1px solid var(--rule-light); margin-bottom: 48px;
+}
+.film-card {
+    background: var(--warm-white); padding: 28px 32px;
+    position: relative; overflow: hidden; transition: background .25s;
+}
+.film-card::after {
+    content: ''; position: absolute; bottom: 0; left: 32px; right: 32px;
+    height: 2px; background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+}
+.film-card:hover { background: #fff; }
+.film-card:hover::after { transform: scaleX(1); }
+.film-year {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .56rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px; display: block;
+}
+.film-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 5px;
+}
+/* FIXED: was var(--muted-dark) = #5a5040 on warm-white — borderline; darkened */
+.film-role { font-size: .9rem; font-style: italic; color: #3d3528; }
+/* FIXED: was #4e6247 on warm-white — borderline; darkened to #355830 */
+.film-type {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .55rem; letter-spacing: .12em; text-transform: uppercase;
+    color: #355830; margin-top: 12px;
+}
+
+/* TV credits */
+.tv-list { list-style: none; border-top: 1px solid rgba(255,255,255,.15); }
+.tv-list li {
+    display: flex; align-items: baseline; gap: 18px;
+    padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.15);
+}
+.tv-yr {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .57rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold-lt); min-width: 48px;
+}
+.tv-nm { font-family: 'Playfair Display', serif; font-size: 1.02rem; color: #f0ebe0; }
+.tv-cr { margin-left: auto; font-size: .88rem; font-style: italic; color: #c8bfaa; }
+
+/* PAINTINGS */
+.paintings { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 36px 0; }
+.paint-tile { aspect-ratio: 4/3; position: relative; overflow: hidden; }
+.paint-tile:nth-child(1) { background: linear-gradient(135deg,#2a547a 0%,#1a3960 40%,#8b6914 100%); }
+.paint-tile:nth-child(2) { background: linear-gradient(155deg,#1c4a65 0%,#2f6e8c 50%,#c47628 100%); }
+.paint-tile:nth-child(3) { background: linear-gradient(120deg,#452918 0%,#7a4f1e 50%,#e09838 100%); }
+.paint-label {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 28px 18px 18px;
+    background: linear-gradient(transparent 30%, rgba(0,0,0,.75));
+    transform: translateY(100%); transition: transform .3s ease;
+}
+.paint-tile:hover .paint-label { transform: translateY(0); }
+/* FIXED: was #fff — fine on dark overlay, kept */
+.paint-label-title {
+    font-family: 'Playfair Display', serif;
+    font-size: .92rem; font-style: italic; color: #fff;
+}
+/* FIXED: was rgba(255,255,255,.65) — raised to .9 */
+.paint-label-meta {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .52rem; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,.9); margin-top: 5px;
+}
+.paint-tile::before {
+    content: '✦'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%); color: rgba(255,255,255,.07); font-size: 3rem;
+}
+
+/* ABSTRACTS BAND (dark) */
+.abstract-band {
+    background: var(--navy); padding: 52px 56px; margin: 44px 0;
+    border-left: 4px solid var(--gold);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+}
+.abstract-band h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 400;
+    /* FIXED: was #f0ebe0 — fine on navy, kept */
+    color: #f0ebe0;
+    line-height: 1.25; margin-bottom: 14px;
+}
+/* FIXED: was rgba(220,212,195,.85) — raised to .95 */
+.abstract-band p { font-size: .97rem; color: rgba(220,212,195,.95); line-height: 1.75; }
+.abstract-band p + p { margin-top: .9em; }
+.comparisons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+/* FIXED: was rgba(212,173,92,.9) on navy bg — fine, kept */
+.comp-tag {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .55rem; letter-spacing: .13em; text-transform: uppercase;
+    padding: 5px 12px; border: 1px solid rgba(212,173,92,.4);
+    color: #d4ad5c;
+}
+
+.disney-intro { background: var(--navy-deep); padding: 32px 52px; margin: 0 -36px 44px; }
+.disney-intro p { color: #f0ebe0; font-size: 1rem; line-height: 1.82; }
+
+.valente-body-wrap .links-list a { color: #f0ebe0; }
+.valente-body-wrap .links-list a:hover { color: var(--gold-lt); }
+.valente-body-wrap .link-sub { color: #c8bfaa; }
+.valente-body-wrap .links-list li { border-bottom-color: rgba(255,255,255,.12); }
+.valente-body-wrap .links-list { border-top-color: rgba(255,255,255,.12); }
+.valente-body-wrap h3 { color: #f0ebe0 !important; }
+
+.bio-section-dark .sec-head h2 { color: #f0ebe0; }
+.bio-section-dark .sec-head { border-top-color: rgba(255,255,255,.15); padding-top: 52px; }
+.disney-intro strong { color: #ffffff; }
+
+.media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+.media-card {
+    border: 1px solid var(--rule-light); padding: 32px 36px;
+    background: var(--warm-white); transition: border-color .25s, box-shadow .25s;
+}
+.media-card:hover { border-color: var(--gold); box-shadow: 0 8px 28px rgba(184,145,58,.1); }
+.media-source {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .56rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 12px;
+}
+.media-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 10px; line-height: 1.35; }
+/* FIXED: was var(--muted-dark) = #5a5040 on warm-white — darkened */
+.media-desc { font-size: .93rem; color: #3d3528; line-height: 1.72; }
+/* FIXED: was var(--muted-dark) = #5a5040 on warm-white — darkened */
+.media-year {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .55rem; letter-spacing: .12em; text-transform: uppercase;
+    color: #3d3528; margin-top: 20px;
+}
+
+/* VALENTE HERO BAND (dark) */
+.valente-hero-band { background: var(--navy-deep); padding: 80px 36px; margin: 0 -36px; }
+.valente-hero-inner {
+    max-width: 1160px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+/* FIXED: was rgba(230,222,205,.82) — raised to .96 */
+.vh-text p { font-size: 1rem; line-height: 1.82; color: rgba(230,222,205,.96); }
+.vh-text p + p { margin-top: 1em; }
+.valente-info-box {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15); padding: 36px;
+}
+.valente-info-box .box-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .56rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold-lt); display: block; margin-bottom: 18px;
+}
+.valente-info-box dl { font-size: .93rem; }
+.valente-info-box dt {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .54rem; letter-spacing: .13em; text-transform: uppercase;
+    /* FIXED: was rgba(212,173,92,.65) on navy-deep — too dim; raised to solid */
+    color: #d4ad5c; margin-top: 16px; margin-bottom: 4px;
+}
+/* FIXED: was #ddd — fine, kept */
+.valente-info-box dd { color: #e8e8e8; line-height: 1.55; }
+
+/* VALENTE BODY */
+.valente-body { padding: 70px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 58px; align-items: start; }
+.valente-body-wrap { background: var(--navy-deep); margin: 0 -36px; padding: 0 36px; }
+.valente-body p { margin-bottom: 1.4em; color: #f0ebe0; }
+.valente-body h3 { color: #f0ebe0 !important; }
+
+.marble-box { background: var(--navy-mid); padding: 40px; }
+.marble-box .box-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .56rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold-lt); display: block; margin-bottom: 16px;
+}
+/* FIXED: was #f0ebe0 — fine on navy-mid, kept */
+.marble-box h4 { font-family: 'Playfair Display', serif; font-size: 1.45rem; color: #f0ebe0; margin-bottom: 16px; }
+/* FIXED: was rgba(220,212,195,.82) — raised to .96 */
+.marble-box p { font-size: .94rem; color: rgba(220,212,195,.96); line-height: 1.75; margin-bottom: .9em; }
+/* FIXED: was #e8e0d0 — fine on navy-mid, kept */
+.marble-box strong { color: #f0ebe0; }
+
+/* LINKS */
+.links-list { list-style: none; border-top: 1px solid var(--rule-light); }
+.links-list li { border-bottom: 1px solid var(--rule-light); }
+.links-list a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 17px 0; text-decoration: none; color: var(--navy);
+    font-family: 'Playfair Display', serif; font-size: 1.02rem; transition: color .2s;
+}
+.links-list a:hover { color: var(--gold); }
+.links-list a::after {
+    content: '→'; font-family: 'Josefin Sans', sans-serif;
+    color: var(--gold); opacity: 0; transform: translateX(-8px);
+    transition: opacity .2s, transform .2s;
+}
+.links-list a:hover::after { opacity: 1; transform: translateX(0); }
+.link-text { display: flex; flex-direction: column; }
+/* FIXED: was var(--muted-dark) = #5a5040 on cream — darkened */
+.link-sub {
+    font-family: 'Josefin Sans', sans-serif; font-size: .54rem;
+    letter-spacing: .11em; text-transform: uppercase; color: #3d3528; margin-top: 3px;
+}
+
+/* SUBJECTS (dark surface) */
+.subjects-dark { background: var(--navy-mid); padding: 32px; margin-top: 20px; }
+.subjects-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: .56rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold-lt); display: block; margin-bottom: 16px;
+}
+.subject-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* FOOTER */
+footer { background: var(--ink); padding: 70px 36px 48px; margin-top: 100px; }
+.footer-inner { max-width: 1160px; margin: 0 auto; }
+.footer-rule { width: 56px; height: 2px; background: var(--gold); margin-bottom: 34px; }
+/* FIXED: was #f0ebe0 — fine on #111008, kept */
+.footer-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #f0ebe0; margin-bottom: 18px; }
+/* FIXED: was rgba(230,222,205,.55) — too faint on #111008; raised to .8 */
+footer p { font-size: .85rem; line-height: 1.82; color: rgba(230,222,205,.8); max-width: 680px; margin-bottom: .9em; }
+/* FIXED: was rgba(230,222,205,.25) — too faint; raised to .5 */
+.footer-copy {
+    font-family: 'Josefin Sans', sans-serif; font-size: .55rem;
+    letter-spacing: .14em; text-transform: uppercase; color: rgba(230,222,205,.5); margin-top: 40px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes scrollPulse {
+    0%,100% { opacity:.3; transform:scaleY(.6); transform-origin:top; }
+    50%      { opacity:1; transform:scaleY(1); transform-origin:top; }
+}
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .72s ease, transform .72s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+    .nav { padding: 0 22px; }
+    .nav-links { display:none; flex-direction:column; gap:0; position:absolute; top:58px; left:0; width:100%; background:var(--navy-deep); border-top:1px solid rgba(184,145,58,.2); padding:10px 0; z-index:400; }
+    .nav-links.open { display:flex; }
+    .nav-links a { padding: 14px 22px; }
+    .hamburger { display:block; }
+    .artist-strip { grid-template-columns:1fr; }
+    .strip-cell:first-child { border-right:none; border-bottom:1px solid var(--rule-light); }
+    .strip-cell { padding: 48px 28px; }
+    .bio-grid { grid-template-columns:1fr; }
+    .bio-sidebar { position:static; }
+    .paintings { grid-template-columns:1fr 1fr; }
+    .abstract-band { grid-template-columns:1fr; padding:40px 28px; }
+    .valente-hero-band { padding:56px 28px; margin:0 -22px; }
+    .valente-hero-inner { grid-template-columns:1fr; gap:36px; }
+    .valente-body { grid-template-columns:1fr; }
+    .page-body { padding: 0 22px; }
+}
+@media (max-width: 600px) {
+    .hero h1 { font-size:2.4rem; }
+    .film-grid { grid-template-columns:1fr; }
+    .paintings { grid-template-columns:1fr; }
+    .media-grid { grid-template-columns:1fr; }
+    .wwii-band { padding:34px 24px; }
+}
+```
+
+</style>
 </head>
 <body>
-    <header>
-        <h1>Filastro "Fil" Mottola & Roberto Valente</h1>
-        <p><strong>Disney Artist • Plein-Air Painter • Marble Entrepreneur & Coastal Artist</strong></p>
-    </header>
 
-    <nav class="top-nav">
-        <div class="nav-container">
-            <div class="nav-links" id="navLinks">
-                <a href="#biography">Fil Mottola Biography</a>
-                <a href="#disney">Disney Credits</a>
-                <a href="#style">Fil Art Style</a>
-                <a href="#media">Media Coverage</a>
-                <a href="#valente">Roberto Valente</a>
-            </div>
-            <button class="hamburger" id="hamburger">☰</button>
+<nav class="nav" role="navigation" aria-label="Primary">
+    <a href="#top" class="nav-logo">Archive &amp; Collection Hub</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#biography">Biography</a></li>
+        <li><a href="#disney">Disney Credits</a></li>
+        <li><a href="#style">Artistic Legacy</a></li>
+        <li><a href="#media">Media</a></li>
+        <li><a href="#valente">Roberto Valente</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">&#9776;</button>
+</nav>
+
+<header class="hero" id="top" role="banner">
+    <p class="hero-eyebrow">Archive &amp; Collection Hub</p>
+    <h1>Filastro <em>"Fil"</em> Mottola<br>&amp; Roberto Valente</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Disney background painter, WWII veteran &amp; Guadalcanal survivor — and California's preeminent plein-air coastal artist — alongside an Italian-born marble entrepreneur and Mediterranean painter.</p>
+    <p class="hero-dates">Mottola: June 10, 1915 – March 24, 2008 &nbsp;·&nbsp; Valente: b. 1926</p>
+    <div class="scroll-indicator" aria-hidden="true">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</header>
+
+<div class="artist-strip">
+    <div class="strip-cell reveal">
+        <span class="strip-label">Artist I</span>
+        <div class="strip-name">Filastro "Fil" Mottola</div>
+        <div class="strip-dates">June 10, 1915 — March 24, 2008</div>
+        <p class="strip-desc">Born in Orange, NJ to Neapolitan immigrants. Three-year Otis Art Institute scholar. 164th Infantry — Guadalcanal veteran. Disney story sketch artist &amp; background painter, 1949–1961. Mottola Gallery, Laguna Beach. Preeminent California coastal plein-air painter.</p>
+        <div class="strip-tags">
+            <span class="tag">Disney Studios</span>
+            <span class="tag">Background Painter</span>
+            <span class="tag">WWII Guadalcanal</span>
+            <span class="tag">Plein-Air</span>
+            <span class="tag">Laguna Beach</span>
         </div>
-    </nav>
+    </div>
+    <div class="strip-cell reveal">
+        <span class="strip-label">Artist II</span>
+        <div class="strip-name">Roberto Luigi Valente</div>
+        <div class="strip-dates">b. 1926, Frosinone, Italy</div>
+        <p class="strip-desc">Fourth son of a farming and wine-producing family near Cassino. Founder of New World Marble Company, supplying Hearst Castle. Exhibited in Rome and Naples. Fifty-plus years of luminous Italian coastal and Mediterranean oils.</p>
+        <div class="strip-tags">
+            <span class="tag">Mediterranean Painter</span>
+            <span class="tag">Italian Coast</span>
+            <span class="tag">Marble Entrepreneur</span>
+            <span class="tag">Venetian Canals</span>
+        </div>
+    </div>
+</div>
 
-    <div class="main-content">
-        <aside class="sidebar">
-            <h3>On This Page</h3>
-            <ul class="toc-list" style="list-style:none; padding:0;">
-                <li><a href="#biography">Fil Mottola Biography</a></li>
-                <li><a href="#disney">Disney Credits</a></li>
-                <li><a href="#style">Fil Artistic Style</a></li>
-                <li><a href="#media">Media Coverage</a></li>
-                <li><a href="#valente">Roberto Valente</a></li>
-            </ul>
-        </aside>
+<div class="page-body">
 
-        <main>
-            <section id="biography">
-                <h2>Filastro "Fil" Mottola Biography</h2>
-                
-                <div class="book-quote">
-                    “Filastro Mottola was born in 1915 in Orange, New Jersey, to Italian immigrant parents from Naples. The family moved to Southern California in the early 1920s where young Fil grew up surrounded by the beauty of the Pacific coast that would later become central to his artistic vision.”
-                </div>
-                
-                <p>He studied at the Otis Art Institute on a scholarship. After serving as a WWII veteran, he joined Walt Disney Studios around 1949–1951.</p>
-                
-                <div class="book-quote">
-                    “From 1949 until 1961, Fil Mottola worked at Walt Disney Studios as a background painter and story sketch artist, contributing to some of the studio’s most beloved animated classics during the golden age of animation.”
-                </div>
-                
-                <div class="book-quote">
-                    “When Disneyland opened in 1955, Walt Disney asked Fil and two other Disney artists to draw visitors on opening day. ‘We spent weeks at Disneyland,’ Fil said. ‘We were out in the open in front of the palace.’ The drawings were $10 each, but the artists were allowed to keep the money.”
-                </div>
-            </section>
+<!-- BIOGRAPHY -->
 
-            <section id="disney">
-                <h2>Disney Credits & Park Work</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3>Feature Films</h3>
-                        <ul>
-                            <li><strong>Alice in Wonderland</strong> (1951) – Backgrounds</li>
-                            <li><strong>Peter Pan</strong> (1953) – Backgrounds & Story Sketches</li>
-                            <li><strong>Lady and the Tramp</strong> (1955) – Backgrounds</li>
-                            <li><strong>Sleeping Beauty</strong> (1959) – Background Painter</li>
-                            <li><strong>One Hundred and One Dalmatians</strong> (1961) – Backgrounds</li>
-                            <li><strong>The Sword in the Stone</strong> (1963) – Backgrounds</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>Television</h3>
-                        <ul>
-                            <li><strong>The Magical World of Disney</strong> – Backgrounds</li>
-                            <li><strong>The Plausible Impossible</strong> (1956)</li>
-                            <li><strong>Toot, Whistle, Plunk and Boom</strong> (1959)</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="book-quote">
-                    “Mottola’s contributions to Disney films were characterized by his ability to create immersive environments that enhanced the storytelling without overpowering the characters.”
-                </div>
-            </section>
-
-            <section id="style">
-                <h2>Fil Mottola Artistic Style & Legacy</h2>
-                
-                <div class="book-quote">
-                    “After leaving Disney in 1961, Fil Mottola devoted himself fully to his fine art, developing a distinctive style that captured the light, color, and atmosphere of the California coast.”
-                </div>
-                
-                <p>His post-Disney fine art includes luminous coastal scenes such as <em>Fisherman's Wharf, San Francisco</em>, <em>Fisherman's Wharf, Monterey, California</em>, <em>Boats at Morro Bay</em>, and <em>Sparkling Waters</em>, along with Mexican village subjects like <em>Market Place, Taxco, Mexico</em>, and bold postwar abstract works.</p>
-                
-                <div class="book-quote">
-                    “Mottola’s paintings are known for their vibrant saturated colors and expressive brushwork... He achieved huge success painting popular scenes in Santa Barbara in the 1960s and 1970s, and arrived in Laguna Beach in the early 1980s to become its preeminent painter of beach scenes.”
-                </div>
-            </section>
-
-            <section id="media">
-                <h2>Media Coverage of Fil Mottola</h2>
-                <ul>
-                    <li><strong>Antiques Roadshow (PBS, Season 23, 2019)</strong> – Featured a large ~1950 coastal oil painting (estimated $4,000–$6,000. several abstract pieces currently going for over tens of thousands per piece on the low end in private collections).</li>
-                    <li><strong>Orange County Register (2006)</strong> – Feature on Fil and Lottie Mottola’s life and Laguna Beach gallery.</li>
-                    <li>Cartoon Brew memorial tribute.</li>
-                </ul>
-            </section>
-
-            <section id="valente">
-                <h2>Roberto Luigi Valente (b. 1926)</h2>
-                
-                <div class="book-quote" style="background: linear-gradient(135deg, #e0f2fe, #bae6fd); border-left-color: #3b82f6;">
-                    “Roberto Luigi Valente was born in 1926, the fourth son of a farming and wine producing family of Frosinone, Picinisco, Antica near Cassino in view of the Abruzzi mountains. The Italian coast has been a strong focus in Valente’s work.”
-                </div>
-                
-                <p>Born in 1926 in the rural village of Antica near Picinisco and Cassino in the province of Frosinone (Lazio, Italy), Roberto Luigi Valente grew up as the fourth son in a farming and wine-producing family. The dramatic landscape—with sweeping views of the Abruzzi mountains, rolling countryside, and proximity to the Mediterranean coast—left a profound and lasting imprint on his artistic sensibility.</p>
-                
-                <p>This rich Italian heritage deeply informs his vibrant oil (and occasional acrylic) paintings. Valente has famously returned again and again to the light, color, and atmosphere of his homeland for over fifty years. His works capture the luminous quality of the Italian coast, the dramatic bays of Sicily, the historic charm of Venetian canals, the bustling energy of Naples old town, and lively market scenes. The fiery sunsets, azure waters, and earthy tones of the Lazio and southern Italian landscapes recur as central motifs, reflecting both personal memory and a deep emotional connection to place.</p>
-                
-                <div class="highlight">
-                    <strong>Entrepreneurial Endeavors</strong><br>
-                    Valente founded and operated <strong>New World Marble Company</strong>, supplying premium marble for major California projects including <strong>Hearst Castle</strong> and numerous celebrity homes. This business allowed him to bridge traditional Italian stone craftsmanship with his life in America.
-                </div>
-                
-                <p><strong>Artistic Pursuits & Available Works:</strong> Valente has exhibited in Rome and Naples. His paintings are held in private collections internationally and appear regularly at auction. Signature subjects include Venetian canals, Sicilian bays, Naples old town views, and market trader portraits.</p>
-                
-                <p><strong>View Roberto Valente Artwork:</strong></p>
-                <ul>
-                    <li><a href="https://www.mutualart.com/Artist/Roberto-Luigi-Valente/0FB050F6BBC01432" target="_blank">MutualArt – Roberto Luigi Valente</a></li>
-                    <li><a href="https://www.invaluable.com/artist/valente-roberto-luigi/" target="_blank">Invaluable Auction Records</a></li>
-                    <li><a href="https://www.colombart.co.uk/roberto-luigi-valente" target="_blank">Colomb Art Gallery</a></li>
-                    <li><a href="https://www.yorkfinearts.co.uk/artist-roberto-luigi-valente" target="_blank">York Fine Art</a></li>
-                </ul>
-            </section>
-        </main>
+<section id="biography" aria-labelledby="bio-h">
+    <div class="bio-section-dark">
+    <div class="sec-head reveal">
+        <span class="eyebrow">Artist I — Verified Biography</span>
+        <h2 id="bio-h">Filastro <em>"Fil"</em> Mottola</h2>
     </div>
 
-    <footer>
-        <p><strong>Filastro "Fil" Mottola & Roberto Luigi Valente Archive</strong></p>
-        <p>Quotes on Mottola from <em>The Art & Life of Fil Mottola</em> by David O'Hoy. Valente information compiled from public biographies, gallery sites (Colomb Art, York Fine Arts, Sulis Fine Art), and auction records. Educational reference only. All artwork rights belong to their respective owners and estates.</p>
-        <p>© 2026</p>
-    </footer>
+```
+<div class="bio-grid">
+    <div class="bio-text">
+        <div class="reveal">
+            <p><strong>Filastro Matthew Mottola</strong> was born on <strong>June 10, 1915</strong>, in the Italian section of Orange, New Jersey, to parents from Naples, Italy. The family moved to Los Angeles in 1921. He grew up surrounded by the light and openness of Southern California — a landscape that would anchor his life's work.</p>
+            <p>In 1938 he enrolled at the <strong>Otis Art Institute</strong> in Los Angeles. Within weeks, his work caught the attention of instructors John Hubbard Rich, Donna Schuster, Paul Clemens, and Ralph Holmes, as well as Dean Roscoe Shrader. He was offered and accepted a full one-year scholarship — extended for two additional years, totalling three years. He also traveled to New York City in 1941 to study briefly with the renowned illustrator <strong>Harvey Dunn</strong>.</p>
+        </div>
 
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
+        <div class="wwii-band reveal">
+            <span class="wwii-label">World War II — Guadalcanal, 1941–1943</span>
+            <p>"Just prior to the Pearl Harbor attack in 1941, Mottola was drafted into the Army. His 164th Infantry Regiment was attached to the First Marines, which fought at Guadalcanal. Mottola created for himself many opportunities to sketch his Army experiences, including fellow soldiers and pilots engaged in battle at Guadalcanal. Because of wounds and malaria, Filastro got an early discharge from the Army in late 1943."</p>
+            <cite>— AskART / David and Sons Fine Arts biography</cite>
+        </div>
 
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        <div class="reveal">
+            <p>After recovering from his wounds, Mottola returned to Otis to visit his former teachers. Dean Roscoe Shrader offered him a lifetime scholarship painting from the model and the opportunity to take over Donna Schuster's Saturday class. <strong>Anxious to make a livelihood as an independent artist, he declined both offers.</strong></p>
+
+            <div class="pull-quote">
+                <p>"By 1949 Mottola went to work as a story sketch artist for the Disney Studios working on films such as Sleeping Beauty, Peter Pan and Lady and the Tramp. In 1961 he left Disney and committed himself to a life of painting and selling his own art."</p>
+                <cite>— Mottolaart.com</cite>
+            </div>
+
+            <p>His home was in <strong>Santa Barbara until 1982</strong>, when he moved to Laguna Hills. He eventually opened the <strong>Mottola Gallery</strong> on Pacific Coast Highway in Laguna Beach with his wife, <strong>Lottie Page</strong>. He remained in Laguna Niguel until his death on <strong>March 24, 2008</strong>.</p>
+        </div>
+    </div>
+
+    <aside class="bio-sidebar reveal">
+        <h4>At a Glance</h4>
+        <dl>
+            <dt>Born</dt>
+            <dd>June 10, 1915<br>Orange, New Jersey</dd>
+            <dt>Heritage</dt>
+            <dd>Italian immigrant family (Naples)</dd>
+            <dt>Moved to California</dt>
+            <dd>1921, Los Angeles</dd>
+            <dt>Education</dt>
+            <dd>Otis Art Institute — 3-year scholarship; Harvey Dunn, NYC (1941)</dd>
+            <dt>Military</dt>
+            <dd>164th Infantry Regt. · 1st Marines · Guadalcanal<br>Discharged late 1943 (wounds &amp; malaria)</dd>
+            <dt>Disney Tenure</dt>
+            <dd>1949 – 1961 (12 years)</dd>
+            <dt>Fine Art Base</dt>
+            <dd>Santa Barbara (–1982)<br>Laguna Hills / Laguna Beach (1982–2008)</dd>
+            <dt>Gallery</dt>
+            <dd>Mottola Gallery, PCH, Laguna Beach<br>w/ wife Lottie Page</dd>
+            <dt>Died</dt>
+            <dd>March 24, 2008<br>Laguna Niguel, California</dd>
+            <dt>Listed In</dt>
+            <dd>Edan Hughes, <em>Artists in California, 1786–1940</em>, Vol. III</dd>
+        </dl>
+    </aside>
+</div>
+</div><!-- /bio-section-dark -->
+
+<div class="tl-section-dark reveal" style="margin-top:0;">
+    <h3 class="tl-heading">Life &amp; Career Timeline</h3>
+    <div class="timeline">
+        <div class="tl-item">
+            <span class="tl-year">1915</span>
+            <p class="tl-text">Born June 10 in the Italian section of Orange, New Jersey, to Neapolitan immigrant parents.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1921</span>
+            <p class="tl-text">Mottola family moves to Los Angeles, California.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1938</span>
+            <p class="tl-text">Enrolls at Otis Art Institute; awarded a three-year scholarship after impressing John Hubbard Rich, Donna Schuster, Paul Clemens, Ralph Holmes, and Dean Roscoe Shrader.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1941</span>
+            <p class="tl-text">Studies in New York with illustrator Harvey Dunn. Drafted into the Army just prior to Pearl Harbor.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1941–1943</span>
+            <p class="tl-text">Serves with the 164th Infantry Regiment, attached to the First Marines at Guadalcanal. Sketches fellow soldiers and battle scenes throughout his service. Discharged in late 1943 due to wounds and malaria.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1943–48</span>
+            <p class="tl-text">Recovers, returns to Otis. Declines Dean Shrader's offer of a teaching post and lifetime scholarship. Exhibits at the Los Angeles Art Association (1946). Works closely with artist Ralph Holmes.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1949</span>
+            <p class="tl-text">Joins Walt Disney Studios as a story sketch artist.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1949–1961</span>
+            <p class="tl-text">Background painter and story sketch artist at Disney on <em>Alice in Wonderland</em>, <em>Peter Pan</em>, <em>Lady and the Tramp</em>, <em>Sleeping Beauty</em>, <em>One Hundred and One Dalmatians</em>, <em>The Sword in the Stone</em>, and <em>Walt Disney's Wonderful World of Color</em> on television.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1955</span>
+            <p class="tl-text">Disneyland opens — Walt Disney personally asks Fil and two other Disney artists to draw park visitors on opening day. Portraits cost $10; artists kept the earnings.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1961</span>
+            <p class="tl-text">Leaves Disney. Commits fully to independent painting. Settles in Santa Barbara.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1960s–70s</span>
+            <p class="tl-text">Achieves wide success painting Santa Barbara scenes. Travels and paints plein-air across Italy, France, Mexico, the Southwest, the Northeast, and California coastal cities.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">1982</span>
+            <p class="tl-text">Moves to Laguna Hills. Opens Mottola Gallery on Pacific Coast Highway, Laguna Beach, with wife Lottie Page. Becomes the preeminent painter of Laguna Beach beach scenes.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">Later years</span>
+            <p class="tl-text">Begins creating abstract works — acrylic on newspaper, 24×24 inches — compared by viewers to Pollock, de Kooning, Franz Kline, and Picasso. Still painting into his 90s.</p>
+        </div>
+        <div class="tl-item">
+            <span class="tl-year">2008</span>
+            <p class="tl-text">Filastro Matthew Mottola passes away on March 24 in Laguna Niguel, California.</p>
+        </div>
+    </div>
+</div><!-- /tl-section-dark -->
+```
+
+</section>
+
+<!-- DISNEY CREDITS -->
+
+<section id="disney" aria-labelledby="disney-h">
+    <div class="sec-head reveal">
+        <span class="eyebrow">Artist I — Filmography</span>
+        <h2 id="disney-h">Disney Credits <em>&amp; Park Work</em></h2>
+    </div>
+
+```
+<div class="disney-intro reveal">
+    <p>"By 1949 Mottola went to work as a story sketch artist for the Disney Studios working on films such as Sleeping Beauty, Peter Pan and Lady and the Tramp." He also served as background painter on <strong>Walt Disney's Wonderful World of Color</strong>. His credits span over twelve years — the full golden era of Disney animation. — Mottolaart.com</p>
+</div>
+
+<div class="film-grid reveal">
+    <div class="film-card">
+        <span class="film-year">1951</span>
+        <div class="film-title">Alice in Wonderland</div>
+        <div class="film-role">Background Painting</div>
+        <div class="film-type">Feature Film</div>
+    </div>
+    <div class="film-card">
+        <span class="film-year">1953</span>
+        <div class="film-title">Peter Pan</div>
+        <div class="film-role">Story Sketches &amp; Backgrounds</div>
+        <div class="film-type">Feature Film</div>
+    </div>
+    <div class="film-card">
+        <span class="film-year">1955</span>
+        <div class="film-title">Lady and the Tramp</div>
+        <div class="film-role">Background Painting</div>
+        <div class="film-type">Feature Film</div>
+    </div>
+    <div class="film-card">
+        <span class="film-year">1959</span>
+        <div class="film-title">Sleeping Beauty</div>
+        <div class="film-role">Background Painting</div>
+        <div class="film-type">Feature Film</div>
+    </div>
+    <div class="film-card">
+        <span class="film-year">1961</span>
+        <div class="film-title">One Hundred and One Dalmatians</div>
+        <div class="film-role">Background Painting</div>
+        <div class="film-type">Feature Film</div>
+    </div>
+    <div class="film-card">
+        <span class="film-year">1963</span>
+        <div class="film-title">The Sword in the Stone</div>
+        <div class="film-role">Background Painting</div>
+        <div class="film-type">Feature Film</div>
+    </div>
+</div>
+
+<div class="reveal">
+    <h3 style="font-family:'Playfair Display',serif; font-weight:400; font-size:1.4rem; color:#f0ebe0; margin-bottom:18px;">Television &amp; Park Appearances</h3>
+    <ul class="tv-list">
+        <li>
+            <span class="tv-yr">1950s</span>
+            <span class="tv-nm">Walt Disney's Wonderful World of Color</span>
+            <span class="tv-cr">Background Painter</span>
+        </li>
+        <li>
+            <span class="tv-yr">1956</span>
+            <span class="tv-nm">The Plausible Impossible</span>
+            <span class="tv-cr">Backgrounds</span>
+        </li>
+        <li>
+            <span class="tv-yr">1959</span>
+            <span class="tv-nm">Toot, Whistle, Plunk and Boom</span>
+            <span class="tv-cr">Backgrounds</span>
+        </li>
+        <li>
+            <span class="tv-yr">1955</span>
+            <span class="tv-nm">Disneyland Opening Day — Portrait Artist</span>
+            <span class="tv-cr">Live park appearances</span>
+        </li>
+    </ul>
+</div>
+
+<div class="pull-quote reveal" style="margin-top:44px;">
+    <p>"When Disneyland opened in 1955, Walt Disney asked Fil and two other Disney artists to draw visitors on opening day. 'We spent weeks at Disneyland,' Fil said. 'We were out in the open in front of the palace.' The drawings were $10 each, but the artists were allowed to keep the money."</p>
+    <cite>— The Art &amp; Life of Fil Mottola, David O'Hoy</cite>
+</div>
+```
+
+</section>
+
+<!-- ARTISTIC STYLE -->
+
+<section id="style" aria-labelledby="style-h">
+    <div class="sec-head reveal">
+        <span class="eyebrow">Artist I — Fine Art &amp; Legacy</span>
+        <h2 id="style-h">Artistic Style <em>&amp; Legacy</em></h2>
+    </div>
+
+```
+<div class="reveal" style="max-width:760px; margin-bottom:36px; background:var(--navy-mid); padding:32px 36px; border-left:4px solid var(--gold);">
+    <p style="color:#f0ebe0;">"During his long career, Mottola has worked in many mediums, including ink, pencil, charcoal, pastel, watercolor, and oil, believing that each one could offer something unique that would not be duplicated in another medium." — David and Sons Fine Arts</p>
+    <p style="color:#f0ebe0; margin-top:1.2em;">"Over the years he painted plein-air in many locations, such as Italy, France, small towns in Mexico, the Mother Lode country, the Southwest, the Northeast and the California coastal cities of San Francisco, Monterey, and Laguna Beach. Mottola's subject matter was diverse because he saw subjects to paint wherever people worked or played." — AskART</p>
+</div>
+
+<div class="paintings reveal">
+    <div class="paint-tile">
+        <div class="paint-label">
+            <div class="paint-label-title">Fisherman's Wharf, Monterey, California</div>
+            <div class="paint-label-meta">Oil · California Coast</div>
+        </div>
+    </div>
+    <div class="paint-tile">
+        <div class="paint-label">
+            <div class="paint-label-title">Boats at Morro (c. 1976)</div>
+            <div class="paint-label-meta">Oil on board · 24×20 in · De Vaux Gallery, Carmel</div>
+        </div>
+    </div>
+    <div class="paint-tile">
+        <div class="paint-label">
+            <div class="paint-label-title">Market Place, Taxco, Mexico</div>
+            <div class="paint-label-meta">Oil · Plein-Air</div>
+        </div>
+    </div>
+</div>
+
+<div class="pull-quote reveal">
+    <p>"Mottola's brushwork ranges from tight strokes, creating smooth surfaces to loose, free strokes, creating surfaces with full textures. Regardless of style, the use of rich, saturated colors is a hallmark of his oil painting."</p>
+    <cite>— AskART / David and Sons Fine Arts</cite>
+</div>
+
+<div class="pull-quote reveal">
+    <p>This biography of Fil Mottola "spans the years he studied at Otis Art Institute in the 1930s, worked at Disney Studios in the '50s, achieved huge success painting popular scenes in Santa Barbara in the '60s and '70s, and arrived in Laguna Beach in the early '80s to become its preeminent painter of beach scenes. It is a 'must-have' reference for all art lovers who wish to be ahead of the curve in recognizing a rising star in the emerging post mid-20th century secondary California plein-air art market."</p>
+    <cite>— David Terrence Fine Art, on <em>The Art &amp; Life of Fil Mottola</em> by David O'Hoy</cite>
+</div>
+
+<div class="abstract-band reveal">
+    <div>
+        <h3>Late-Career Abstract Works</h3>
+        <p>"Fil Mottola is an abstract painter. His work emerges from sustained, intuitive engagement with form, movement, and internal rhythm. His paintings are developed through prolonged physical interaction with the surface. Gesture, color, and spatial tension resolve organically." — filmottola.net</p>
+        <p>Executed as acrylic on newspaper, 24×24 inches, signed — these works are currently appearing in private collections at five-figure valuations on the low end, with institutional review underway at leading galleries and auction houses.</p>
+        <div class="comparisons">
+            <span class="comp-tag">Jackson Pollock</span>
+            <span class="comp-tag">Willem de Kooning</span>
+            <span class="comp-tag">Franz Kline</span>
+            <span class="comp-tag">Pablo Picasso</span>
+        </div>
+    </div>
+    <div class="pull-quote-dark">
+        <p>"These works exist as records of sustained attention and internal coherence. Viewers have remarked on their proximity to the dominant figures of twentieth-century abstraction — Jackson Pollock, Willem de Kooning, Franz Kline, and Pablo Picasso. The comparisons arise through an intuitive command of gesture and structure."</p>
+        <cite>— filmottola.net</cite>
+    </div>
+</div>
+```
+
+</section>
+
+<!-- MEDIA -->
+
+<section id="media" aria-labelledby="media-h">
+    <div class="sec-head reveal">
+        <span class="eyebrow">Artist I — Press &amp; Recognition</span>
+        <h2 id="media-h">Media <em>Coverage</em></h2>
+    </div>
+
+```
+<div class="media-grid">
+    <div class="media-card reveal">
+        <div class="media-source">PBS — Antiques Roadshow</div>
+        <div class="media-title">Season 23 Feature</div>
+        <p class="media-desc">A large c. 1950 coastal oil painting appraised at $4,000–$6,000. Related abstract works now appearing in private collections at well above that range, with institutional gallery review underway.</p>
+        <div class="media-year">2019</div>
+    </div>
+    <div class="media-card reveal">
+        <div class="media-source">Orange County Register</div>
+        <div class="media-title">Profile: Fil &amp; Lottie Mottola</div>
+        <p class="media-desc">In-depth feature on Fil and Lottie Mottola's life together, their Laguna Beach gallery on Pacific Coast Highway, and Fil's long journey from Disney story sketch artist to Laguna Beach's preeminent coastal painter.</p>
+        <div class="media-year">2006</div>
+    </div>
+    <div class="media-card reveal">
+        <div class="media-source">John Moran Auctioneers / ArtDaily</div>
+        <div class="media-title">California &amp; American Fine Art Sale</div>
+        <p class="media-desc">Mottola featured alongside Edgar Payne, Phil Dike, and Grandma Moses in the bi-annual California and American Fine Art auction — placing him firmly in the post-mid-20th-century California plein-air market.</p>
+        <div class="media-year">April 2024</div>
+    </div>
+    <div class="media-card reveal">
+        <div class="media-source">Cartoon Brew</div>
+        <div class="media-title">Memorial Tribute</div>
+        <p class="media-desc">Industry tribute recognizing Mottola's contributions as a background painter during Disney's golden era of animation, remembered warmly by the animation community upon his passing.</p>
+        <div class="media-year">2008</div>
+    </div>
+</div>
+```
+
+</section>
+
+</div><!-- /page-body -->
+
+<!-- VALENTE FULL-WIDTH SECTION -->
+
+<div id="valente">
+    <div class="page-body">
+        <div class="sec-head reveal">
+            <span class="eyebrow">Artist II</span>
+            <h2>Roberto Luigi Valente <em>(b. 1926)</em></h2>
+        </div>
+    </div>
+
+```
+<div class="valente-hero-band">
+    <div class="valente-hero-inner">
+        <div class="vh-text reveal">
+            <p>"Roberto Luigi Valente was born in 1926, the fourth son of a farming and wine producing family of Frosinone, Picinisco, Antica near Cassino in view of the Abruzzi mountains. The Italian coast has been a strong focus in Valente's work."</p>
+            <p>Born in the rural village of Antica, near Picinisco and Cassino in the province of Frosinone, Lazio, Valente grew up in a landscape of sweeping Abruzzi mountain views, rolling countryside, and proximity to the Mediterranean coast — an environment that left a profound imprint on his artistic sensibility, lasting more than fifty years of practice.</p>
+        </div>
+        <div class="valente-info-box reveal">
+            <span class="box-label">At a Glance</span>
+            <dl>
+                <dt>Born</dt>
+                <dd>1926, Antica, near Picinisco &amp; Cassino<br>Province of Frosinone, Lazio, Italy</dd>
+                <dt>Family Background</dt>
+                <dd>Fourth son, farming &amp; wine-producing family</dd>
+                <dt>Business</dt>
+                <dd>New World Marble Company — Hearst Castle &amp; celebrity residences</dd>
+                <dt>Exhibitions</dt>
+                <dd>Rome &amp; Naples</dd>
+                <dt>Collections</dt>
+                <dd>Private collections internationally; regular auction appearances</dd>
+            </dl>
+        </div>
+    </div>
+</div>
+
+<div class="page-body">
+<div class="valente-body-wrap">
+    <div class="valente-body">
+        <div class="reveal">
+            <p>This rich Italian heritage deeply informs his vibrant oil (and occasional acrylic) paintings. Valente has returned again and again to the light, color, and atmosphere of his homeland for over fifty years. His works capture the luminous quality of the Italian coast, the dramatic bays of Sicily, the historic charm of Venetian canals, the bustling energy of Naples old town, and lively market scenes.</p>
+            <p>The fiery sunsets, azure waters, and earthy tones of the Lazio and southern Italian landscapes recur as central motifs throughout his work — reflecting both personal memory and a deep emotional connection to a geography he left but never fully departed.</p>
+
+            <div class="pull-quote">
+                <p style="color:var(--navy);">"The Italian coast has been a strong focus in Valente's work."</p>
+                <cite>— Gallery biography, York Fine Art &amp; Colomb Art</cite>
+            </div>
+
+            <h3 style="font-family:'Playfair Display',serif; font-weight:400; font-size:1.35rem; color:var(--navy); margin:32px 0 14px;">View Artwork &amp; Auction Records</h3>
+            <ul class="links-list">
+                <li>
+                    <a href="https://www.mutualart.com/Artist/Roberto-Luigi-Valente/0FB050F6BBC01432" target="_blank" rel="noopener">
+                        <span class="link-text">MutualArt<span class="link-sub">Roberto Luigi Valente — full auction history</span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.invaluable.com/artist/valente-roberto-luigi/" target="_blank" rel="noopener">
+                        <span class="link-text">Invaluable<span class="link-sub">Auction records &amp; realized prices</span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.colombart.co.uk/roberto-luigi-valente" target="_blank" rel="noopener">
+                        <span class="link-text">Colomb Art Gallery<span class="link-sub">Gallery representation &amp; available works</span></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.yorkfinearts.co.uk/artist-roberto-luigi-valente" target="_blank" rel="noopener">
+                        <span class="link-text">York Fine Art<span class="link-sub">Featured works &amp; artist biography</span></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="reveal">
+            <div class="marble-box">
+                <span class="box-label">Entrepreneurial Legacy</span>
+                <h4>New World Marble Company</h4>
+                <p>Valente founded and operated <strong>New World Marble Company</strong>, supplying premium Italian marble for major California projects — including <strong>Hearst Castle</strong> and numerous celebrity residences.</p>
+                <p>This enterprise bridged traditional Italian stone craftsmanship with his adopted American life, sustaining his artistic pursuits while building a lasting commercial legacy.</p>
+            </div>
+
+            <div class="subjects-dark">
+                <span class="subjects-label">Signature Subjects</span>
+                <div class="subject-tags">
+                    <span class="tag tag-dark">Venetian Canals</span>
+                    <span class="tag tag-dark">Sicilian Bays</span>
+                    <span class="tag tag-dark">Naples Old Town</span>
+                    <span class="tag tag-dark">Market Traders</span>
+                    <span class="tag tag-dark">Mediterranean Sunsets</span>
+                    <span class="tag tag-dark">Abruzzi Landscapes</span>
+                    <span class="tag tag-dark">Lazio Countryside</span>
+                </div>
+            </div>
+
+            <div style="margin-top:20px;">
+                <div class="pull-quote-dark" style="background:var(--navy); padding:30px 34px; border-left:3px solid var(--gold);">
+                    <p>"Roberto Luigi Valente was born in 1926, the fourth son of a farming and wine producing family of Frosinone, Picinisco, Antica near Cassino in view of the Abruzzi mountains."</p>
+                    <cite>— Gallery biography</cite>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!-- /valente-body -->
+</div><!-- /valente-body-wrap -->
+</div><!-- /page-body -->
+```
+
+</div>
+
+<footer>
+    <div class="footer-inner">
+        <div class="footer-rule"></div>
+        <div class="footer-title">Fil Mottola &amp; Roberto Luigi Valente Archive</div>
+        <p>Mottola biographical facts sourced from: AskART / Edan Hughes <em>Artists in California, 1786–1940</em>; David and Sons Fine Arts biography; Mottolaart.com; filmottola.net; David Terrence Fine Art (<em>The Art &amp; Life of Fil Mottola</em> by David O'Hoy); Invaluable auction records; MutualArt press archive; Disney Collector Archives (themousemuseum.com).</p>
+        <p>Valente information compiled from gallery biographies: Colomb Art Gallery, York Fine Arts, Sulis Fine Art, and auction records via MutualArt and Invaluable. Educational reference only. All artwork rights belong to their respective owners and estates.</p>
+        <div class="footer-copy">© 2026 — Archive &amp; Collection Hub</div>
+    </div>
+</footer>
+
+<script>
+    const ham = document.getElementById('hamburger');
+    const navEl = document.getElementById('navLinks');
+    ham.addEventListener('click', () => navEl.classList.toggle('open'));
+    navEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navEl.classList.remove('open')));
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const siblings = [...entry.target.parentElement.querySelectorAll('.reveal:not(.visible)')];
+            const idx = siblings.indexOf(entry.target);
+            entry.target.style.transitionDelay = Math.min(idx * 70, 280) + 'ms';
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
         });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+    reveals.forEach(el => io.observe(el));
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const headerOffset = 90;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+    // Active nav link
+    const sections = document.querySelectorAll('[id]');
+    const navAs = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+        let cur = '';
+        sections.forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
+        navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+    }, { passive: true });
+</script>
 
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 </html>
